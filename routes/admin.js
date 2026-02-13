@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const navControler = require('../controllers/navControler');
-const isAuth = require("../middleware/auth-midd");
+const isAuth = require("../auth/isAuth");
 
-router.get('/ajout',navControler.getAjoutProduits);
+router.get('/ajout',isAuth,navControler.getAjoutProduits);
 
 router.post('/ajout',navControler.postAjoutProduit);
 
