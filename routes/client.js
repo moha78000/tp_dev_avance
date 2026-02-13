@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-
-let html="<!DOCTYPE html>";
-html+="<html><head><title>Page boutique</title></head>";
-html+="<body><h1>Boutique</h1>";
-html+="</body></html>";
+const path = require("path");
+const rootApps = require("../outils/path");
+const adminData = require("./admin");
 
 router.get('/',(req,res,next) => {
     console.log('middleware racine', req.method);
-    res.send(html);
+    console.log(adminData.produits);
+    /*res.sendFile(path.join(rootApps,'views','boutique.html'));*/
+    res.render('boutique',{pageTitle:"Boutique"});
 })
+
 module.exports = router;

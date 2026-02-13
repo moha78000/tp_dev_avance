@@ -1,25 +1,20 @@
 const express = require("express");
 const router = express.Router();
-
-
-let html="<!DOCTYPE html><html><head><title>page ajout</title></head>";
-html+="<body><h1>Page d'ajout</h1>";
-html+="<form action='produit' method='POST'>";
-html+="<label for='produit'>Produit</label>";
-html+="<input type='text' name='produit' placeholder='Produit'/>";
-html+="<button type='submit' id='produit' value='produit'>Produit</button>";
-html+="</form>";
-html+="</body></html>";
+const path = require("path");
+const rootApps = require("../outils/path");
+const produits=[]
 
 router.get('/ajout',(req,res,next) => {
     console.log('middleware ajout', req.method);
-    res.send(html);
+    res.render('ajout',{pageTitle:"Ajout admin"});
 })
 
-router.post('/produit',(req,res,next) => {
+router.post('/ajout',(req,res,next) => {
     console.log('middleware produit', req.method);
+    produits.push({produit: req.body.produit});
     console.log(req.body);
-    res.redirect('/ajout');
+    res.redirect('/');
 })
 
-module.exports = router;
+exports.routes = router;
+exports.produits = produits;
