@@ -1,20 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-const rootApps = require("../outils/path");
-const produits=[]
 
-router.get('/ajout',(req,res,next) => {
-    console.log('middleware ajout', req.method);
-    res.render('ajout',{pageTitle:"Ajout admin"});
-})
+const navControler = require('../controllers/navControler');
+const isAuth = require("../middleware/auth-midd");
 
-router.post('/ajout',(req,res,next) => {
-    console.log('middleware produit', req.method);
-    produits.push({produit: req.body.produit});
-    console.log(req.body);
-    res.redirect('/');
-})
+router.get('/ajout',navControler.getAjoutProduits);
 
-exports.routes = router;
-exports.produits = produits;
+router.post('/ajout',navControler.postAjoutProduit);
+
+module.exports = router;
