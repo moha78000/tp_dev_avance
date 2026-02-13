@@ -1,0 +1,11 @@
+root {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+header {
+    background-color: yellowgreen;
+}
+button {
+    background-color: yellowgreen;
+}

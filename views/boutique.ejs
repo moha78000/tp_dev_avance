@@ -19,6 +19,14 @@
 <main>
     <h1>Liste des produits</h1>
     <p>Bienvenue sur ma boutique</p>
+    <% if (listeProduits.length ==0) {%>
+        <p>Il n'y a pas de produits</p>
+    <% } else { %>
+    <ul>
+        <% for (let prod of listeProduits) { %>
+            <li><%= prod.produit%></li>
+        <% }} %>
+    </ul>
 </main>
 </body>
 </html>
