@@ -1,0 +1,16 @@
+<%- include('fragments/head.ejs')%>
+</head>
+<body>
+<%- include('fragments/navigation.ejs')%>
+
+<main>
+  <h1>Connexion</h1>
+  <form method="POST" action="/auth">
+    <label for="username">Nom d'utilisateur</label>
+    <input type="text" name="username" id="username" autocomplete="off" required>
+    <label for="mdp">Mot de passe</label>
+    <input type="password" name="password" id="mdp" autocomplete="off" required>
+    <button type="submit">Se connecter</button>
+  </form>
+</main>
+<%- include('fragments/foot.ejs')%>

@@ -1,6 +1,23 @@
-if (!req.session.isLog) {
-    console.log("Non authentifié");
-    return res.redirect('/auth');
-} else {
-    res.render('ajout',{pageTitle:"Ajout admin", isLog:req.session.isLog});
-}
+const express = require("express");
+const router = express.Router();
+
+router.get('/auth', (req, res) => {
+    res.render('login', {pageTitle: "Connexion"});
+});
+
+router.post('/auth', (req, res) => {
+    // Vérifier identifiants
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (username === 'admin' && password === 'admin') {
+        req.session.isLog = true;
+        req.session.username = username;
+        res.redirect('/admin/ajout');
+
+    } else {
+        res.redirect('/auth');
+    }
+});
+
+module.exports = router;
