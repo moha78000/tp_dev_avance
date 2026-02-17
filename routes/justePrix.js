@@ -1,7 +1,17 @@
 const express = require('express');
-const { User, Historique } = require('../outils/database');
+const  User = require('../model/User');
+const Historique = require('../model/Historique');
 
 const router = express.Router();
+
+router.get('/', (req, res) => {
+    if (!req.session.isLog) return res.redirect('/login');
+
+    res.render('justePrix', {
+        pageTitle: 'Le Juste Prix'
+    });
+});
+
 
 // Créer ou récupérer un utilisateur
 router.post('/user', async (req, res) => {

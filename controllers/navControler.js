@@ -34,7 +34,7 @@ exports.postInscription = (req,res,next) => {
     console.log('middleware inscription', req.method);
     const user = new User(req.body.user);
     user.save();
-    res.redirect('/boutique');
+    res.redirect('/');
 }
 
 

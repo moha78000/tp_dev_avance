@@ -22,5 +22,9 @@ router.get('/modifier', isAuth, (req, res) => {
 
 });
 
+router.get('/justePrix/', isAuth, (req, res) => {
+    return res.redirect('/justePrix');
+})
+
 
 module.exports = isAuth;
