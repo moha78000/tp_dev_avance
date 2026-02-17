@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../outils/database');
 
 const historiqueSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -8,4 +8,6 @@ const historiqueSchema = new mongoose.Schema({
     coupNumero: Number
 }, { timestamps: true });
 
-module.exports = mongoose.model('Historique', historiqueSchema);
+const Historique = mongoose.models.Historique || mongoose.model('Historique', historiqueSchema);
+
+module.exports = Historique;
