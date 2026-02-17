@@ -1,5 +1,7 @@
 const adminData = require("../routes/admin");
 const Produit = require('../model/dataProduits');
+const User = require('../model/user');
+const Historique = require('../model/historique');
 
 exports.getAjoutProduits = (req,res,next) => {
     console.log('log session',req.session.isLog);
@@ -27,3 +29,12 @@ exports.getBoutique = (req,res,next) => {
     const produits = Produit.fetchAll();
     res.render('boutique',{pageTitle:"Boutique",listeProduits: produits});
 }
+
+exports.postInscription = (req,res,next) => {
+    console.log('middleware inscription', req.method);
+    const user = new User(req.body.user);
+    user.save();
+    res.redirect('/boutique');
+}
+
+
