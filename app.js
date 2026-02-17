@@ -10,6 +10,10 @@ const clientRoutes = require('./routes/client');
 const adminRoutes = require('./routes/admin')
 const authRoutes = require('./routes/auth');
 const outRoutes = require('./routes/logout');
+const User = require('./model/User');
+const Historique = require('./model/Historique');
+const justePrixRoutes = require('./routes/justePrix');
+
 
 app.listen(port, () => {
     console.log("Server Express est à l'écoute sur le port : " + port);
@@ -23,10 +27,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(session({secret: 'secret',resave: false, saveUninitialized: false}));
 
+app.use((req, res, next) => {
+    res.locals.user = req.session.isLog
+        ? {
+            loggedIn: true,
+            username: req.session.username
+        }
+        : null;
+
+    res.locals.role = req.session.role || 0;
+    res.locals.page_actuelle = req.path;
+
+    next();
+});
+
 app.use('/', authRoutes);
 
 app.use('/admin',adminRoutes);
 
+app.use('/justePrix', justePrixRoutes);
 app.use(clientRoutes);
 
 app.use(outRoutes.routes);
