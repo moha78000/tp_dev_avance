@@ -29,7 +29,7 @@ const produitSchema = new mongoose.Schema({
 });
 
 // Modèle basé sur la collection "produit"
-const Produit = mongoose.model(<nom_schéma>, produitSchema, <nom_collection>);
+const Produit = mongoose.model('Produit' , produitSchema, 'produit');
 
     console.log(Produit);
 
@@ -61,5 +61,5 @@ const Produit = mongoose.model(<nom_schéma>, produitSchema, <nom_collection>);
     }
     }
     // Appel des fonctions
-    //getProduits();
-    //insererProduit();
+    getProduits();
+    insererProduit();
