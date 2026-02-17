@@ -1,0 +1,35 @@
+<header>
+    <nav>
+        <div class="logo">
+            <img src="/img/logo1.png" alt="logo de l'entreprise">
+        </div>
+
+        <ul class="nav-btn">
+            <li><a href="/">Accueil</a></li>
+
+            <% if (user && user.loggedIn) { %>
+
+                <% if (role === 1) { %>
+                    <li><a href="/historique_connexion">Historique des connexions</a></li>
+                    <li><a href="/signup">Créer un compte</a></li>
+                <% } %>
+
+                <% if (role === 2) { %>
+                    <li><a href="/adminsystem">Administration</a></li>
+                <% } %>
+
+                <% if (role === 0) { %>
+                    <li><a href="/justePrix">Le juste Prix</a></li>
+                <% } %>
+
+                <li><a href="/logout">Déconnexion</a></li>
+
+            <% } else { %>
+
+                <li><a href="/login">Connexion</a></li>
+                <li><a href="/signup">Inscription</a></li>
+
+            <% } %>
+        </ul>
+    </nav>
+</header>

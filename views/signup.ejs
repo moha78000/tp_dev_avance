@@ -1,0 +1,14 @@
+<%- include('fragments/head.ejs')%>
+</head>
+<body>
+<%- include('fragments/navbar.ejs')%>
+<main>
+    <form method="POST" action="/signup">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" name="username" id="username" autocomplete="off" required>
+        <label for="mdp">Mot de passe</label>
+        <input type="password" name="password" id="mdp" autocomplete="off" required>
+        <button type="submit">S'inscrire</button>
+    </form>
+</main>
+<%- include('fragments/foot.ejs')%>

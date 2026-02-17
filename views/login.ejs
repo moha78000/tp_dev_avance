@@ -1,10 +1,9 @@
 <%- include('fragments/head.ejs')%>
 </head>
 <body>
-<%- include('fragments/navigation.ejs')%>
-<title> Connexion</title>
+<%- include('fragments/navbar.ejs')%>
 <main>
-  <form method="POST" action="/auth">
+  <form method="POST" action="/login">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" id="username" autocomplete="off" required>
     <label for="mdp">Mot de passe</label>
