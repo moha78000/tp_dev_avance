@@ -3,6 +3,13 @@ const router = express.Router();
 const User = require('../model/User');
 const bcrypt = require('bcrypt'); // pour hacher les mots de passe
 
+router.get('/', (req, res) => {
+    res.render('accueil', {
+        pageTitle: 'Accueil'
+    });
+});
+
+
 router.get('/signup', (req, res) => {
     res.render('signup', { pageTitle: 'Inscription' });
 });
