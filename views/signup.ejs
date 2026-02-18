@@ -7,8 +7,67 @@
         <label for="username">Nom d'utilisateur</label>
         <input type="text" name="username" id="username" autocomplete="off" required>
         <label for="mdp">Mot de passe</label>
-        <input type="password" name="password" id="mdp" autocomplete="off" required>
-        <button type="submit">S'inscrire</button>
+        <input type="password" name="password" id="mdp" required>
+        <div>
+            <ul>
+                <li id="length" class="invalid">Au moins 8 caractères</li>
+                <li id="majuscule" class="invalid">doit contenir au moins 1 majuscule </li>
+                <li id="minuscule" class="invalid">doit contenir au moins 1 minuscule</li>
+                <li id="chiffre" class="invalid">doit contenir au moins 1 chiffre </li>
+                <li id="special_char" class="invalid"> doit contenir au moins 1 caractère spécial (%?*#!)</li>
+            </ul>
+
+        </div>
+        <button type="submit" id="submit" disabled>S'inscrire</button>
     </form>
 </main>
 <%- include('fragments/foot.ejs')%>
+<script>
+    const valider = document.getElementById('submit');
+
+    document.getElementById('mdp').addEventListener('input', function() {
+
+        const mdp = this.value;
+        const lengthCritere = mdp.length >= 8;
+        const majusculeCritere = /[A-Z]/.test(mdp);
+        const minusculeCritere = /[a-z]/.test(mdp);
+        const chiffreCritere = /[0-9]/.test(mdp);
+        const specialCharCritere = /[%?*#!]/.test(mdp);
+
+        // Mettre à jour les classes des critères
+        updateCritere('length', lengthCritere);
+        updateCritere('majuscule', majusculeCritere);
+        updateCritere('minuscule', minusculeCritere);
+        updateCritere('chiffre', chiffreCritere);
+        updateCritere('special_char', specialCharCritere);
+
+        if (
+            lengthCritere &&
+            majusculeCritere &&
+            minusculeCritere &&
+            chiffreCritere &&
+            specialCharCritere
+        ) {
+            valider.disabled = false;
+
+        } else {
+            valider.disabled = true;
+        }
+    });
+
+
+    function updateCritere(id, isValid) {
+        const element = document.getElementById(id);
+        if (isValid) {
+            element.classList.remove('invalid');
+            element.classList.add('valid');
+
+
+        } else {
+            element.classList.remove('valid');
+            element.classList.add('invalid');
+        }
+    }
+
+
+</script>
