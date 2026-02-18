@@ -76,6 +76,13 @@ ul{
         visibility: hidden
     }
 }
+.valid{
+    color: green;
+}
+
+.invalid{
+    color: red;
+}
 
 header{
     display: flex;
