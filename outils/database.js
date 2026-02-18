@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb+srv://moh78078000:Mohamedkhaldi@cluster1.satxusx.mongodb.net/bd_sae';
+const uri = 'mongodb://22302683:u5sytrv9@192.168.24.1:27017/22302683_db';
 
 mongoose.connect(uri);
 
