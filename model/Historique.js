@@ -8,7 +8,7 @@ const historiqueSchema = new mongoose.Schema({
     coupNumero: Number
 }, { timestamps: true });
 
-const Historique = mongoose.models.Historique || mongoose.model('Historique', historiqueSchema);
+const Historique = mongoose.models.Historique || mongoose.model('Historique', historiqueSchema , 'historique');
 
 
 
