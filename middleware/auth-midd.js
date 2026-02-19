@@ -26,5 +26,8 @@ router.get('/justePrix/', isAuth, (req, res) => {
     return res.redirect('/justePrix');
 })
 
+router.get('/out', isAuth, (req, res) => {
+    return res.redirect('/out');
+})
 
 module.exports = isAuth;
