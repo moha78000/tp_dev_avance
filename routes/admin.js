@@ -5,6 +5,6 @@ const navControler = require("../controllers/navControler");
 const isAuth = require("../middleware/auth-midd");
 
 
-router.get('/signup', navControler.postInscription);
+router.get('/justePrix', isAuth, navControler.postJustePrix);
 
 module.exports = router;
