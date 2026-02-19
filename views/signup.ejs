@@ -3,23 +3,36 @@
 <body>
 <%- include('fragments/navbar.ejs')%>
 <main>
-    <form method="POST" action="/signup">
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" name="username" id="username" autocomplete="off" required>
-        <label for="mdp">Mot de passe</label>
-        <input type="password" name="password" id="mdp" required>
-        <div>
-            <ul>
-                <li id="length" class="invalid">Au moins 8 caractères</li>
-                <li id="majuscule" class="invalid">doit contenir au moins 1 majuscule </li>
-                <li id="minuscule" class="invalid">doit contenir au moins 1 minuscule</li>
-                <li id="chiffre" class="invalid">doit contenir au moins 1 chiffre </li>
-                <li id="special_char" class="invalid"> doit contenir au moins 1 caractère spécial (%?*#!)</li>
-            </ul>
-
-        </div>
-        <button type="submit" id="submit" disabled>S'inscrire</button>
-    </form>
+    <div class="form-container">
+        <form method="POST" action="/signup">
+            <div class="section-form">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username" autocomplete="off" required>
+            </div>
+            <div class="password-container">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" name="password" id="mdp" required>
+            </div>
+            <div class="section-form">
+                <ul class="password-rules">
+                    <li id="length" class="invalid">Au moins 8 caractères</li>
+                    <li id="majuscule" class="invalid">Au moins 1 majuscule</li>
+                    <li id="minuscule" class="invalid">Au moins 1 minuscule</li>
+                    <li id="chiffre" class="invalid">Au moins 1 chiffre</li>
+                    <li id="special_char" class="invalid"> Au moins 1 caractère spécial (% ? * # !)</li>
+                </ul>
+            </div>
+            <div class="actions">
+                <input
+                    type="submit"
+                    id="submit"
+                    class="form-btn"
+                    value="S'inscrire"
+                    disabled
+                >
+            </div>
+        </form>
+    </div>
 </main>
 <%- include('fragments/foot.ejs')%>
 <script>
