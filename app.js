@@ -11,7 +11,6 @@ const adminRoutes = require('./routes/admin')
 const authRoutes = require('./routes/auth');
 const outRoutes = require('./routes/logout');
 const User = require('./model/User');
-const Historique = require('./model/Historique');
 const justePrixRoutes = require('./routes/justePrix');
 
 
