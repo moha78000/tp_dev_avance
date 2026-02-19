@@ -547,6 +547,7 @@ input[type="password"]::-ms-clear {
 .password-container {
     position: relative;
     display: inline-block;
+    margin: 10px;
     color : white;
 }
 
@@ -559,6 +560,7 @@ input[type="password"]::-ms-clear {
     border: none;
     cursor: pointer;
     font-size: 18px;
+    color: green
 }
 /*
 .captcha{
@@ -787,4 +789,122 @@ footer ul li{
 @media (max-width: 300px) {
 
 }
+
+/* =========================
+   JEU : LE JUSTE PRIX
+========================= */
+
+main p,
+body > p {
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Conteneur du formulaire */
+#div_form {
+    background: var(--bg-form);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px auto;
+    width: fit-content;
+    min-width: 280px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Formulaire */
+#div_form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#div_form form p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#div_form label {
+    margin-bottom: 5px;
+}
+
+/* Champ nombre */
+#div_form input[type="number"] {
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Bouton vérifier */
+#div_form input[type="button"] {
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#div_form input[type="button"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 14px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   TABLEAUX
+========================= */
+
+#table,
+#table_res {
+    width: 90%;
+    max-width: 500px;
+    margin: 25px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+#table thead,
+#table_res thead {
+    background: var(--bg-form);
+    color: white;
+}
+
+#table th,
+#table td,
+#table_res th,
+#table_res td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover lignes */
+#table tbody tr:hover,
+#table_res tbody tr:hover {
+    background-color: #f1f9ff;
+}
+
+/* Tables responsive */
+@media (max-width: 600px) {
+    #table,
+    #table_res {
+        width: 95%;
+    }
+}
+
 
