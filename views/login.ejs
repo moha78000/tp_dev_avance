@@ -3,12 +3,21 @@
 <body>
 <%- include('fragments/navbar.ejs')%>
 <main>
-  <form method="POST" action="/login">
-    <label for="username">Nom d'utilisateur</label>
-    <input type="text" name="username" id="username" autocomplete="off" required>
-    <label for="mdp">Mot de passe</label>
-    <input type="password" name="password" id="mdp" autocomplete="off" required>
-    <button type="submit">Se connecter</button>
-  </form>
+  <div class="form-container">
+    <form method="POST" action="/login">
+      <div class="section-form">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" name="username" id="username" autocomplete="off" required>
+      </div>  
+      
+      <div class="password-container">
+        <label for="mdp">Mot de passe</label>
+        <input type="password" name="password" id="mdp" autocomplete="off" required>
+      </div>
+
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>  
+
 </main>
 <%- include('fragments/foot.ejs')%>
