@@ -237,6 +237,27 @@ nav{
     min-height: 100px;
 }
 
+/* Règles du mot de passe */
+.password-rules {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.password-rules li {
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+/* Désactiver bouton */
+input[type=submit]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .choose-container{
     background-color: var(--bg-container);
     width: 100%;
@@ -461,7 +482,8 @@ form{
     flex-direction: column;
 }
 .section-form{
-    margin: 10px ;
+    margin: 10px;
+    color: white;
 }
 #calcul-form .label, #gauss-form label{
     color: white;
@@ -525,6 +547,7 @@ input[type="password"]::-ms-clear {
 .password-container {
     position: relative;
     display: inline-block;
+    color : white;
 }
 
 .password-container button {
