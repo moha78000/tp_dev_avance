@@ -25,21 +25,21 @@ router.post('/signup', async (req, res) => {
 
     const { username, password } = req.body;
     try {
-        // 1?Vérifier si le nom d'utilisateur existe
+        // 1?Vï¿½rifier si le nom d'utilisateur existe
         const existingUser = await User.findOne({ username });
 
         if (existingUser) {
-            // utilisateur déjà existant
+            // utilisateur dÃ©jÃ  existant
             return res.render('signup', {
                 pageTitle: 'Inscription',
-                error: 'Nom d’utilisateur déjà pris'
+                error: 'Nom dï¿½utilisateur dï¿½jï¿½ pris'
             });
         }
 
         // Hasher le mot de passe
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Création de l'utilisateur
+        // CrÃ©ation de l'utilisateur
         const user = new User({
             username,
             password: hashedPassword
@@ -54,7 +54,7 @@ router.post('/signup', async (req, res) => {
         console.error(err);
         res.render('signup', {
             pageTitle: 'Inscription',
-            error: 'Erreur lors de l’inscription'
+            error: 'Erreur lors de lï¿½inscription'
         });
     }
 });
@@ -68,12 +68,12 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await User.findOne({ username });
-        if (!user) return res.send('Utilisateur non trouvé');
+        if (!user) return res.send('Utilisateur non trouvï¿½');
 
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) return res.send('Mot de passe incorrect');
 
-        // Créer session
+        // Crï¿½er session
         req.session.isLog = true;
         req.session.userId = user._id;
         req.session.username = user.username;
