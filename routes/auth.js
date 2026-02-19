@@ -11,27 +11,35 @@ router.get('/', (req, res) => {
 
 
 router.get('/signup', (req, res) => {
+    if (req.session.isLog) {
+        return res.redirect('/');
+    }
+
     res.render('signup', { pageTitle: 'Inscription' });
 });
 // PAGE INSCRIPTION
 router.post('/signup', async (req, res) => {
+    if (req.session.isLog) {
+        return res.redirect('/');
+    }
+
     const { username, password } = req.body;
     try {
-        // 1ï¸VÃ©rifier si le nom d'utilisateur existe
+        // 1?Vérifier si le nom d'utilisateur existe
         const existingUser = await User.findOne({ username });
 
         if (existingUser) {
-            // utilisateur dÃ©jÃ  existant
+            // utilisateur déjà existant
             return res.render('signup', {
                 pageTitle: 'Inscription',
-                error: 'Nom dâ€™utilisateur dÃ©jÃ  pris'
+                error: 'Nom d’utilisateur déjà pris'
             });
         }
 
         // Hasher le mot de passe
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // CrÃ©ation de l'utilisateur
+        // Création de l'utilisateur
         const user = new User({
             username,
             password: hashedPassword
@@ -46,7 +54,7 @@ router.post('/signup', async (req, res) => {
         console.error(err);
         res.render('signup', {
             pageTitle: 'Inscription',
-            error: 'Erreur lors de lâ€™inscription'
+            error: 'Erreur lors de l’inscription'
         });
     }
 });
@@ -60,12 +68,12 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await User.findOne({ username });
-        if (!user) return res.send('Utilisateur non trouvÃ©');
+        if (!user) return res.send('Utilisateur non trouvé');
 
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) return res.send('Mot de passe incorrect');
 
-        // CrÃ©er session
+        // Créer session
         req.session.isLog = true;
         req.session.userId = user._id;
         req.session.username = user.username;
@@ -78,9 +86,4 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// LOGOUT
-router.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/login');
-});
 module.exports = router;
