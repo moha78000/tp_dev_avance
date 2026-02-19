@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
 
     const { username, password } = req.body;
     try {
-        // 1?V�rifier si le nom d'utilisateur existe
+        // Vérifier si le nom d'utilisateur existe
         const existingUser = await User.findOne({ username });
 
         if (existingUser) {
@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) return res.send('Mot de passe incorrect');
 
-        // Cr�er session
+        // Créer session
         req.session.isLog = true;
         req.session.userId = user._id;
         req.session.username = user.username;
@@ -86,4 +86,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/admin', async (req, res) => {
+    if (req.session.username!=="mohamed") {
+        return res.redirect('/login');
+    }
+    res.render('admin', { pageTitle: 'Admin' });
+    
+});
 module.exports = router;
