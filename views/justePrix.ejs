@@ -7,17 +7,17 @@
 
     function viderStockage(){
         local_data = localStorage;
-        local_data.clear();
+        local_data.removeItem('nombreSecret');
         const table = document.getElementById("table-body");
         table.innerHTML = '';
     }
 
     function verifier(){
+
         const n1 = parseInt(document.getElementById('n1').value);
         const table = document.getElementById("table-body");
         const td_n1 = document.createElement("td");
         const tr = document.createElement("tr");
-
         const local_data = localStorage;
         let na;
 
@@ -41,23 +41,35 @@
         if (n1 === na) {
             const nb_coup = table.children.length;
             alert("Vous avez gagné en " + nb_coup + " coups");
+            const int = localStorage.length;
 
-            const table_res = document.getElementById("table-body_res");
+            local_data.setItem("Partie " + int, nb_coup.toString());
+            viderStockage();
+            updateTable();
+        }
+    }
+    function updateTable(){
+        const local_data = localStorage;
+        const table_update = document.getElementById("table-body_res");
+        table_update.innerHTML = '';
+        for (let i = 1; i <= local_data.length; i++) {
+            const nb_coups = local_data.getItem("Partie " + i);
             const td_partie = document.createElement("td");
             const td_coups = document.createElement("td");
             const tr_res = document.createElement("tr");
-
-            const int = table_res.children.length + 1;
-            td_partie.innerHTML = "Partie " + int;
-            td_coups.textContent = nb_coup;
+            td_partie.innerHTML = "Partie " + i;
+            td_coups.textContent = nb_coups;
 
             tr_res.appendChild(td_partie);
             tr_res.appendChild(td_coups);
-            table_res.appendChild(tr_res);
-
-            viderStockage();
+            table_update.appendChild(tr_res);
         }
     }
+
+    window.onload = function() {
+        updateTable();
+    }
+
 
 </script>
 <%- include('fragments/head.ejs')%>
