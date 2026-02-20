@@ -86,9 +86,22 @@ exports.postLogin = async (req, res) => {
 
 // PAGE ADMIN
 exports.getAdmin = (req, res) => {
-    if (req.session.username !== "mohamed") {
+    if (req.session.role !== "1") {
         return res.redirect('/login');
     }
 
     res.render('admin', { pageTitle: 'Admin' });
 };
+
+exports.getEntries= (req,res) => {
+    if (req.session.role !== 1) {
+        return res.redirect('/login');
+    }
+    User.fetchAll()        .then(users => {
+            res.render('admin', {
+                pageTitle: 'Admin',
+                users: users
+            });
+        })
+        .catch(err => console.log(err));
+};   

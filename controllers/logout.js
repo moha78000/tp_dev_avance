@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router(); 
 const isAuth = require("../middleware/auth-midd");
 
 exports.getLogout = (req, res, next) => {
@@ -5,6 +7,13 @@ exports.getLogout = (req, res, next) => {
     console.log(req.session.isLog);
     console.log(req.body);
     console.log(req.user);
-    res.redirect('/out');
-
+    if (req.session.isLog) {
+            req.session.destroy();
+            res.redirect("/");
+        }
+    
+   
+    
+   
 }
+ exports.routes = router;

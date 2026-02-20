@@ -11,7 +11,6 @@ const adminRoutes = require('./routes/admin')
 const authRoutes = require('./routes/auth');
 const navControler = require('./controllers/navControler');
 const outRoutes = require('./routes/logout');
-const User = require('./model/User');
 const justePrixRoutes = require('./routes/justePrix');
 
 
