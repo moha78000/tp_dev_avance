@@ -86,7 +86,7 @@ exports.postLogin = async (req, res) => {
 
 // PAGE ADMIN
 exports.getAdmin = (req, res) => {
-    if (req.session.role !== "1") {
+    if (req.session.role !== 1) {
         return res.redirect('/login');
     }
 
