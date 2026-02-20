@@ -61,6 +61,9 @@ router.post('/signup', async (req, res) => {
 
 // PAGE CONNEXION
 router.get('/login', (req, res) => {
+    if (req.session.isLog) {
+        return res.redirect('/');
+    }
     res.render('login', { pageTitle: 'Connexion' });
 });
 
