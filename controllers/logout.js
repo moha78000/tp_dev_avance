@@ -5,11 +5,6 @@ exports.getLogout = (req, res, next) => {
     console.log(req.session.isLog);
     console.log(req.body);
     console.log(req.user);
-    if (isAuth(req.session.isLog)) {
-        console.log("Non authentifié");
-        return res.redirect('/login');
-    } else {
-        res.redirect('/out');
-    }
+    res.redirect('/out');
 
 }
