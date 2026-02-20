@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', authRoutes);
+app.use(authRoutes);
 
 app.use('/admin',adminRoutes);
 

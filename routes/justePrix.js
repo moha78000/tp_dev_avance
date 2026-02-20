@@ -1,14 +1,9 @@
 const express = require('express');
-
+const justePrix = require('../controllers/justePrix');
+const isAuth = require('../middleware/auth-midd');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    if (!req.session.isLog) return res.redirect('/login');
-
-    res.render('justePrix', {
-        pageTitle: 'Le Juste Prix'
-    });
-});
+router.get('/justePrix', isAuth, justePrix.getJustePrix );
 
 
 module.exports = router;
