@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const justePrix = require("../controllers/justePrix");
-const isAuth = require("../middleware/auth-midd");
+const navControler = require("../controllers/navControler");
+const auth = require("../controllers/auth");
+const midd = require("../middleware/auth-midd");
 
-
-//router.get('/justePrix', isAuth, justePrix.getJustePrix);
+//router.get('/admin', midd.isAdmin, auth.getEntries);
+router.get('/signupadmin', midd.isAdmin, auth.getSignupAdmin);
+router.post('/signupadmin', midd.isAdmin, auth.postSignupAdmin);
 
 module.exports = router;
