@@ -1,4 +1,4 @@
-const adminData = require("../routes/admin");
+// const adminData = require("../routes/admin");
 const express = require("express");
 const router = express.Router();
 // Middleware isAuth
@@ -10,4 +10,11 @@ const isAuth = (req, res, next) => {
     next();
 };
 
-module.exports = isAuth;
+const isAdmin = (req, res, next) => {
+    if (req.session.role !== 1){
+        return res.redirect('/');
+    }
+    next();
+}    
+
+module.exports = {isAuth, isAdmin};
