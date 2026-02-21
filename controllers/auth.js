@@ -104,4 +104,44 @@ exports.getEntries= (req,res) => {
             });
         })
         .catch(err => console.log(err));
-};   
+}; 
+
+
+exports.getSignupAdmin = (req, res) => {
+   
+    res.render('signupadmin', { pageTitle: 'Inscription' });
+};
+
+
+exports.postSignupAdmin = async (req,res) => { 
+    if (req.session.role !== 1) {
+        return res.redirect('/login');
+    }
+    const { username, password, role } = req.body;
+    
+    try {
+        const existingUser = await User.findOne({ username });
+
+        if (existingUser) {
+            return res.render('signupadmin', {
+                pageTitle: 'Inscription',
+                error: 'Nom d’utilisateur déjà pris'
+            });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({
+            username,
+            password: hashedPassword,
+            role
+        });
+        await user.save();
+        res.redirect('/login');
+    }
+    catch (err){
+        console.error(err);
+        res.render('signup', {
+            pageTitle: 'Inscription',
+            error: 'Erreur lors de l’inscription'
+        });
+    }
+};
