@@ -555,7 +555,6 @@ input[type="password"]::-ms-clear {
     color : white;
 }
 
-
 .password-container button {
     position: absolute;
     right: 20px;
