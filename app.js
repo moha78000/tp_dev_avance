@@ -46,6 +46,8 @@ app.use('/admin',adminRoutes);
 
 app.use(justePrixRoutes);
 app.use(clientRoutes);
+app.get('/__test', (req, res) => res.send('ok'));
+
 
 //app.use('/', navControler);
 
