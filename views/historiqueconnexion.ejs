@@ -1,0 +1,44 @@
+<%- include('fragments/head.ejs') %>
+</head>
+<body>
+<%- include('fragments/navbar.ejs') %>
+
+<main class="history-page">
+    <section class="history-table-container">
+        <h1>Historique des connexions</h1>
+
+        <% if (!users || users.length === 0) { %>
+            <p>Aucune entree pour le moment.</p>
+        <% } else { %>
+            <div class="table-scroll">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Date de creation</th>
+                            <th>Action </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user) { %>
+                            <tr>
+                                <td data-label="Nom d'utilisateur"><%= user.username %></td>
+                                <td data-label="Rôle"><%= user.role %></td>
+                                <td data-label="Date de création"><%= user.createdAt ? new Date(user.createdAt).toLocaleString('fr-FR') : '' %></td>
+                                <td data-label="Action">
+                                    <form method="POST" action="/admin/historiqueconnexion/delete/<%= user._id %>">
+                                        <button type="submit" class="user-table-btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </section>
+</main>
+
+<%- include('fragments/foot.ejs') %>
