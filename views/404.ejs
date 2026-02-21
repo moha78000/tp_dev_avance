@@ -4,10 +4,13 @@
 
 <%- include('fragments/navbar.ejs')%>
 
-<main>
-    <h1>Erreur 404</h1>
-    <p>La ressource demandée n'existe pas</p>
-    <a href="/">retourner à la boutique</a>
+<main class="error-container">
+    <div class="error-card">
+        <h1 class="error-code">404</h1>
+        <h2>Page introuvable</h2>
+        <p>La ressource demandée n'existe pas ou a été déplacée.</p>
+        <a href="/" class="btn-home">Retour à l'accueil</a>
+    </div>
 </main>
 
 <%- include('fragments/foot.ejs')%>

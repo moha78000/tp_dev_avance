@@ -712,6 +712,7 @@ footer{
     flex-direction: column;
     height: 100px;
     width: 100%;
+    margin: 0;
     align-items: center;
     justify-content: center;
     color: var(--footer-text);
@@ -860,6 +861,55 @@ body > p {
 #div_form input[type="button"]:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 14px rgba(0,0,0,0.3);
+}
+
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: linear-gradient(135deg, #0077B6, #00B4D8);
+
+
+}
+
+.error-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.error-code {
+    font-size: 72px;
+    margin: 0;
+    color: #F54C27;
+}
+
+.error-card h2 {
+    margin: 10px 0;
+    color: #1F2937;
+}
+
+.error-card p {
+    color: #4B5563;
+    margin-bottom: 25px;
+}
+
+.btn-home {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0077B6;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.btn-home:hover {
+    background-color: #005A8D;
 }
 
 /* =========================
