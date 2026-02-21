@@ -81,7 +81,7 @@ ul{
 }
 
 .invalid{
-    color: red;
+        color: #7F1D1D;  
 }
 
 header{
@@ -183,6 +183,10 @@ nav{
     margin: 10px;
 
 }
+#btn-log{
+    background-color: var(--form-submit-bg);
+    color: #FFFFFF;
+}
 
 /* Boutons d'action sur la page résultat */
 .result-container .actions {
@@ -238,7 +242,7 @@ nav{
 }
 
 /* Règles du mot de passe */
-.password-rules {
+.password-rules {  
     list-style: none;
     padding-left: 0;
     margin-top: 10px;
@@ -551,6 +555,7 @@ input[type="password"]::-ms-clear {
     color : white;
 }
 
+
 .password-container button {
     position: absolute;
     right: 20px;
@@ -562,16 +567,12 @@ input[type="password"]::-ms-clear {
     font-size: 18px;
     color: green
 }
-/*
-.captcha{
-    background: var(--bg);
-    height: 200px;
-    width: 200px;
-    margin: 20px;
-    border-radius: 10px;
-
+.role-container{
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    color: white;
 }
-*/
 
 .fan-container form{
     min-width: 100px;
