@@ -1,7 +1,3 @@
-const express = require("express");
-const router = express.Router(); 
-const isAuth = require("../middleware/auth-midd");
-
 exports.getLogout = (req, res, next) => {
     console.log("middleware de déconnexion" , req.method);
     console.log(req.session.isLog);
@@ -16,4 +12,4 @@ exports.getLogout = (req, res, next) => {
     
    
 }
- exports.routes = router;
+
