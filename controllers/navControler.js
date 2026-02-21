@@ -1,4 +1,4 @@
-const adminData = require("../routes/admin");
+//const adminData = require("../routes/admin");
 const User = require('../model/User');
 const path = require('../outils/path')
 const auth = require("../routes/auth");
