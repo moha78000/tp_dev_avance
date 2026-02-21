@@ -24,7 +24,7 @@ exports.postSignup = async (req, res) => {
         if (existingUser) {
             return res.render('signup', {
                 pageTitle: 'Inscription',
-                error: 'Nom d’utilisateur déjà pris'
+                error: 'Nom d\'utilisateur deja pris'
             });
         }
 
@@ -43,7 +43,7 @@ exports.postSignup = async (req, res) => {
         console.error(err);
         res.render('signup', {
             pageTitle: 'Inscription',
-            error: 'Erreur lors de l’inscription'
+            error: 'Erreur lors de l\'inscription'
         });
     }
 };
@@ -54,9 +54,6 @@ exports.getLogin = (req, res) => {
         return res.redirect('/');
     }
     res.render('login', { pageTitle: 'Connexion' });
-
-
-
 };
 
 // POST LOGIN
@@ -65,7 +62,7 @@ exports.postLogin = async (req, res) => {
 
     try {
         const user = await User.findOne({ username });
-        if (!user) return res.send('Utilisateur non trouvé');
+        if (!user) return res.send('Utilisateur non trouve');
 
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) return res.send('Mot de passe incorrect');
@@ -74,7 +71,6 @@ exports.postLogin = async (req, res) => {
         req.session.userId = user._id;
         req.session.username = user.username;
         req.session.role = user.role;
-
 
         return res.redirect('/');
 
@@ -93,39 +89,61 @@ exports.getAdmin = (req, res) => {
     res.render('admin', { pageTitle: 'Admin' });
 };
 
-exports.getEntries= (req,res) => {
+exports.getEntries = async (req, res) => {
     if (req.session.role !== 1) {
         return res.redirect('/login');
     }
-    User.fetchAll()        .then(users => {
-            res.render('admin', {
-                pageTitle: 'Admin',
-                users: users
-            });
-        })
-        .catch(err => console.log(err));
-}; 
 
+    try {
+        const users = await User.find();
+
+        res.render('historiqueconnexion', {
+            pageTitle: 'Historique des connexions',
+            users
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Erreur lors du chargement de l'historique");
+    }
+};
+
+exports.postDeleteEntry = async (req, res) => {
+    if (req.session.role !== 1) {
+        return res.redirect('/login');
+    }
+
+    try {
+        const userId = req.params.userId;
+
+        if (req.session.userId === userId) {
+            return res.redirect('/admin/historiqueconnexion');
+        }
+
+        await User.findByIdAndDelete(userId);
+        return res.redirect('/admin/historiqueconnexion');
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send('Erreur lors de la suppression');
+    }
+};
 
 exports.getSignupAdmin = (req, res) => {
-   
     res.render('signupadmin', { pageTitle: 'Inscription' });
 };
 
-
-exports.postSignupAdmin = async (req,res) => { 
+exports.postSignupAdmin = async (req, res) => {
     if (req.session.role !== 1) {
         return res.redirect('/login');
     }
     const { username, password, role } = req.body;
-    
+
     try {
         const existingUser = await User.findOne({ username });
 
         if (existingUser) {
             return res.render('signupadmin', {
                 pageTitle: 'Inscription',
-                error: 'Nom d’utilisateur déjà pris'
+                error: 'Nom d\'utilisateur deja pris'
             });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -136,12 +154,11 @@ exports.postSignupAdmin = async (req,res) => {
         });
         await user.save();
         res.redirect('/login');
-    }
-    catch (err){
+    } catch (err) {
         console.error(err);
         res.render('signup', {
             pageTitle: 'Inscription',
-            error: 'Erreur lors de l’inscription'
+            error: 'Erreur lors de l\'inscription'
         });
     }
 };
