@@ -34,17 +34,17 @@ app.use((req, res, next) => {
         }
         : null;
 
-    res.locals.role = req.session.role || 0;
+    res.locals.role = req.session.role ?? 0;
     res.locals.page_actuelle = req.path;
 
     next();
 });
 
-app.use('/',authRoutes);
+app.use('/', authRoutes);
 
 app.use('/admin',adminRoutes);
 
-app.use('/justePrix', justePrixRoutes);
+app.use(justePrixRoutes);
 app.use(clientRoutes);
 
 //app.use('/', navControler);
