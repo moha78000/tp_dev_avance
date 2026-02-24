@@ -81,13 +81,6 @@ exports.postLogin = async (req, res) => {
 };
 
 // PAGE ADMIN
-exports.getAdmin = (req, res) => {
-    if (req.session.role !== 1) {
-        return res.redirect('/login');
-    }
-
-    res.render('admin', { pageTitle: 'Admin' });
-};
 
 exports.getEntries = async (req, res) => {
     if (req.session.role !== 1) {
@@ -156,7 +149,7 @@ exports.postSignupAdmin = async (req, res) => {
         res.redirect('/login');
     } catch (err) {
         console.error(err);
-        res.render('signup', {
+        res.render('signupadmin', {
             pageTitle: 'Inscription',
             error: 'Erreur lors de l\'inscription'
         });
