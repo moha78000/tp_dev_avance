@@ -1,5 +1,3 @@
-const isAuth = require("../middleware/auth-midd");
-
 exports.getJustePrix = (req, res) => {
     console.log("middleware du juste Prix" , req.method);
     console.log(req.session.isLog);
