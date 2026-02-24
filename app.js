@@ -9,7 +9,6 @@ const error404 = require('./controllers/error404');
 const clientRoutes = require('./routes/client');
 const adminRoutes = require('./routes/admin')
 const authRoutes = require('./routes/auth');
-const navControler = require('./controllers/navControler');
 const outRoutes = require('./routes/logout');
 const justePrixRoutes = require('./routes/justePrix');
 
@@ -41,16 +40,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', authRoutes);
-
 app.use('/admin',adminRoutes);
-
 app.use(justePrixRoutes);
 app.use(clientRoutes);
-app.get('/__test', (req, res) => res.send('ok'));
-
-
-//app.use('/', navControler);
-
 app.use(outRoutes.routes);
-
 app.use(error404.getError404);
